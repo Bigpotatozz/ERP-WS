@@ -1,5 +1,7 @@
 
-import { Column, DataType, Table, Model } from "sequelize-typescript";
+import { Column, DataType, Table, Model, HasOne } from "sequelize-typescript";
+import { ClienteEntity } from "src/cliente/entities/cliente.entity";
+import { EmpleadoEntity } from "src/empleado/entities/empleado.entity";
 
 
 @Table({
@@ -45,4 +47,10 @@ export class PersonaEntity extends Model<PersonaEntity> {
     })
     correo: string;   
 
+    @HasOne(() => ClienteEntity)
+    cliente: ClienteEntity;
+
+    @HasOne(() => EmpleadoEntity)
+    empleado: EmpleadoEntity
 }
+

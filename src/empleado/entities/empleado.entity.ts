@@ -1,5 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Table, Model } from "sequelize-typescript";
 import { PersonaEntity } from "src/persona/entities/persona.entity";
+import { SucursalEntity } from "src/sucursal/entities/sucursal.entity";
 
 
 @Table({
@@ -47,12 +48,12 @@ export class EmpleadoEntity extends Model{
     @BelongsTo(() => PersonaEntity, { foreignKey: 'id_persona', targetKey: 'id_persona'})
     persona: PersonaEntity
 
-    /*
+    
     @ForeignKey(() => SucursalEntity)
     @Column({})
     id_sucursal: number;
 
     @BelongsTo(() => SucursalEntity, { foreignKey: 'id_sucursal', targetKey: 'id_sucursal'})
     sucursal: SucursalEntity
-    */
+
 }
