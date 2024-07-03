@@ -1,6 +1,8 @@
 
-import {Model, BelongsTo, Column, DataType, ForeignKey, Table, HasOne } from "sequelize-typescript";
+import {Model, BelongsTo, Column, DataType, ForeignKey, Table, HasOne, HasMany } from "sequelize-typescript";
+import { DireccionEntity } from "src/direccion/entities/direccion.entity";
 import { PersonaEntity } from "src/persona/entities/persona.entity";
+import { VentaEntity } from "src/venta/entities/venta.entity";
 
 @Table({
     tableName: 'clientes',
@@ -45,6 +47,12 @@ export class ClienteEntity extends Model{
 
     @BelongsTo(() => PersonaEntity, { foreignKey: 'id_persona', targetKey: 'id_persona'})
     persona: PersonaEntity
+
+    @HasMany(() => DireccionEntity)
+    direccion: DireccionEntity
+
+    @HasMany(() => VentaEntity)
+    venta: VentaEntity
     
 }
 

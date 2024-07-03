@@ -50,7 +50,9 @@ export class EmpleadoEntity extends Model{
 
     
     @ForeignKey(() => SucursalEntity)
-    @Column({})
+    @Column({
+        type: DataType.INTEGER
+    })
     id_sucursal: number;
 
     @BelongsTo(() => SucursalEntity, { foreignKey: 'id_sucursal', targetKey: 'id_sucursal'})

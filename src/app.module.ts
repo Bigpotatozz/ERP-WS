@@ -14,6 +14,18 @@ import { ClienteEntity } from './cliente/entities/cliente.entity';
 import { DireccionEntity } from './direccion/entities/direccion.entity';
 import { VentaModule } from './venta/venta.module';
 import { ProductoModule } from './producto/producto.module';
+import { DetalleVentaModule } from './detalle_venta/detalle_venta.module';
+import { DetalleInventarioModule } from './detalle_inventario/detalle_inventario.module';
+import { InventarioModule } from './inventario/inventario.module';
+import { CompraModule } from './compra/compra.module';
+import { DetalleComprasModule } from './detalle_compras/detalle_compras.module';
+import { CompraEntity } from './compra/entities/compra.entity';
+import { DetalleCompraEntity } from './detalle_compras/entities/detalle_compra.entity';
+import { DetalleInventarioEntity } from './detalle_inventario/entities/detalle_inventario.entity';
+import { DetalleVentaEntity} from './detalle_venta/entities/detalle_venta.entity';
+import { InventarioEntity } from './inventario/entities/inventario.entity';
+import { ProductoEntity } from './producto/entities/producto.entity';
+import { VentaEntity } from './venta/entities/venta.entity';
 
 @Module({
   imports: [PersonaModule, EmpleadoModule,
@@ -24,15 +36,32 @@ import { ProductoModule } from './producto/producto.module';
       username: 'postgres',
       password: '1924',
       database: 'erp_sweet_code',
-      models: [EmpleadoEntity, PersonaEntity, SucursalEntity, ClienteEntity, DireccionEntity]
+      models: [ClienteEntity, 
+                CompraEntity, 
+                DetalleCompraEntity,
+                DetalleInventarioEntity, 
+                DetalleVentaEntity, 
+                DireccionEntity, 
+                EmpleadoEntity, 
+                InventarioEntity, 
+                PersonaEntity, 
+                ProductoEntity, 
+                SucursalEntity, 
+                VentaEntity]
     }),
     SucursalModule,
     ClienteModule,
     DireccionModule,
     VentaModule,
-    ProductoModule
+    ProductoModule,
+    DetalleVentaModule,
+    DetalleInventarioModule,
+    InventarioModule,
+    CompraModule,
+    DetalleComprasModule
   ],
   controllers: [AppController],
   providers: [AppService],
+  
 })
 export class AppModule {}

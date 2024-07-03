@@ -1,4 +1,5 @@
 import { Model,Column, DataType, Table, HasMany } from "sequelize-typescript";
+import { CompraEntity } from "src/compra/entities/compra.entity";
 import { EmpleadoEntity } from "src/empleado/entities/empleado.entity";
 
 
@@ -45,5 +46,8 @@ export class SucursalEntity extends Model {
 
     @HasMany(() => EmpleadoEntity)
     empleados: EmpleadoEntity[];
+
+    @HasMany(() => CompraEntity)
+    compras: CompraEntity[];
 
 }
