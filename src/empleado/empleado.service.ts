@@ -1,4 +1,4 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Body, HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { EmpleadoEntity } from './entities/empleado.entity';
 import { PersonaEntity } from 'src/persona/entities/persona.entity';
@@ -12,7 +12,7 @@ export class EmpleadoService {
     constructor(@InjectModel(EmpleadoEntity) private empleadoModel: typeof EmpleadoEntity, 
                 @InjectModel(PersonaEntity) private personaModel: typeof PersonaEntity){}
 
-    async postEmpleado(persona, empleado){
+    async postEmpleado(persona, empleado): Promise<object>{
 
         try{            
             
@@ -31,9 +31,29 @@ export class EmpleadoService {
 
         }catch(error){
             console.log(error);
-            throw new Error('Error en el servidor');
+            throw new HttpException(error, 500);
         }
         
+    }
+
+    async getEmpleado(id: number): Promise<object>{
+
+        try{
+
+            const employee = await this.empleadoModel.findOne({where: {id_empleado: id, estatus : true}, include: PersonaEntity});
+            console.log(employee);
+
+            if(!employee){
+                throw new HttpException('Empleado no encontrado', 404);
+            }
+
+            return employee;
+            
+
+        }catch(error){
+            throw error
+        }
+
     }
 
 }
