@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Res } from '@nestjs/common';
 import { EmpleadoService } from './empleado.service';
 import { CreatePersona } from 'src/persona/dto/create-persona.dto';
 import { CreateEmpleado } from './dto/create-empleado.dto';
@@ -37,5 +37,37 @@ async getEmpleado(@Res() res, @Param('id') id_usuario: number){
 
 }
 
+@Get('/getEmpleados/')
+async getEmpleados (@Res() res){
+
+  try{
+
+    const empleados = await this.empleadoService.getEmpleados();
+
+    return res.status(200).send({
+      empleados: empleados
+    })
+
+  }catch(error: any){
+    return res.status(error.status).send({message: error.message})
+  }
+
+}
+
+
+@Put('/deleteEmpleado/')
+async updateEmpleado(@Res() res, @Body('id_usuario') id_usuario: number){
+
+  try{
+
+    const response = await this.empleadoService.deleteEmpleado(id_usuario);
+
+    return res.status(200).send(response);
+
+  }catch(error: any){
+    return res.status(error.status).send({message: error.message})
+  }
+
+}
 
 }
