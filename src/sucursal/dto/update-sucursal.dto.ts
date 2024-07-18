@@ -1,8 +1,7 @@
 import { IsString } from "class-validator";
 
-export class CreateSucursalDto {
+export class UpdateSucursalDto {
    
-
     @IsString()
     nombre:string;
     @IsString()

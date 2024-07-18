@@ -1,4 +1,4 @@
-import { BelongsTo, Column, DataType, ForeignKey, Table, Model } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, Table, Model, AllowNull } from "sequelize-typescript";
 import { PersonaEntity } from "src/persona/entities/persona.entity";
 import { SucursalEntity } from "src/sucursal/entities/sucursal.entity";
 
@@ -42,7 +42,10 @@ export class EmpleadoEntity extends Model{
     estatus: boolean;
 
     @ForeignKey(() => PersonaEntity)
-    @Column
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false
+    })
     id_persona: number;
 
     @BelongsTo(() => PersonaEntity, { foreignKey: 'id_persona', targetKey: 'id_persona'})
@@ -51,7 +54,8 @@ export class EmpleadoEntity extends Model{
     
     @ForeignKey(() => SucursalEntity)
     @Column({
-        type: DataType.INTEGER
+        type: DataType.INTEGER,
+        allowNull: false
     })
     id_sucursal: number;
 

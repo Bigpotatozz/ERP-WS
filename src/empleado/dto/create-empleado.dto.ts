@@ -25,4 +25,7 @@ export class CreateEmpleado{
     @IsNotEmpty()
     salario: number;
 
+    @IsNumber()
+    id_sucursal: number;
+
 }

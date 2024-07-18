@@ -43,6 +43,10 @@ export class SucursalEntity extends Model {
         type: DataType.STRING
     })
     municipio: string;
+    @Column({
+        type: DataType.BOOLEAN
+    })
+    estatus: boolean;
 
     @HasMany(() => EmpleadoEntity)
     empleados: EmpleadoEntity[];
