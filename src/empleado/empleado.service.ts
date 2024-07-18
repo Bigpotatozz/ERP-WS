@@ -41,8 +41,7 @@ export class EmpleadoService {
         try{
 
             const employee = await this.empleadoModel.findOne({where: {id_empleado: id, estatus : true}, include: PersonaEntity});
-            console.log(employee);
-
+    
             if(!employee){
                 throw new HttpException('Empleado no encontrado', 404);
             }
