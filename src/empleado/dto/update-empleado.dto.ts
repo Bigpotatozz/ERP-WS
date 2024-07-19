@@ -1,7 +1,7 @@
 import { IsNumber, IsString } from "class-validator";
-import { updatePersona } from "src/persona/dto/update-persona.dto";
 
-export class updateEmpleado{
+
+export class UpdateEmpleadoDto{
 
     @IsString()
     contrasenia: string;

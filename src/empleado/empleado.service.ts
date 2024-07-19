@@ -6,6 +6,8 @@ import { CreateEmpleado } from './dto/create-empleado.dto';
 import { CreatePersona } from 'src/persona/dto/create-persona.dto';
 import { Model, Sequelize } from 'sequelize';
 import { isEmpty } from 'class-validator';
+import { UpdatePersonaDto } from 'src/persona/dto/update-persona.dto';
+import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
 
 @Injectable()
 export class EmpleadoService {
@@ -92,9 +94,28 @@ export class EmpleadoService {
 
         }catch(error){
             throw error;
-        }
+        }  
     }
 
+    async updateEmpleado(id: number, empleado: UpdateEmpleadoDto, persona: UpdatePersonaDto): Promise<object>{
+
+        try{
+            const employee = await this.empleadoModel.findOne({where: {id_empleado: id}});
+            if(!employee){
+                throw new HttpException('Empleado no encontrado', 404);
+            
+            }
+            const person = await this.personaModel.findOne({where: {id_persona: employee.id_persona}});
+            const employeeUpdated = await employee.update(empleado);
+            const personUpdated = await person.update(persona);
+
+            return {persona: personUpdated, empleado: employeeUpdated};
+        }catch(error){
+            throw error;
+        }
+
+
+    }
 
 
 }

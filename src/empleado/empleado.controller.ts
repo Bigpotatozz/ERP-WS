@@ -56,7 +56,7 @@ async getEmpleados (@Res() res){
 
 
 @Put('/deleteEmpleado/')
-async updateEmpleado(@Res() res, @Body('id_usuario') id_usuario: number){
+async deleteEmpleado(@Res() res, @Body('id_usuario') id_usuario: number){
 
   try{
 
@@ -69,5 +69,20 @@ async updateEmpleado(@Res() res, @Body('id_usuario') id_usuario: number){
   }
 
 }
+
+@Put('/updateEmpleado/')
+async updateEmpleado(@Res() res, @Body() data: {id_usuario: number, empleado: CreateEmpleado, persona: CreatePersona}){
+  try{
+
+    const response = await this.empleadoService.updateEmpleado(data.id_usuario, data.empleado, data.persona);
+    
+    return res.status(200).send(response);
+
+  }catch(error: any){
+    return res.status(error.status).send({message: error.message})
+  }
+}
+
+
 
 }

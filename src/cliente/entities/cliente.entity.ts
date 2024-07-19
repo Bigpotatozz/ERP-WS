@@ -35,13 +35,15 @@ export class ClienteEntity extends Model{
     })
     calle: string;
     @Column({
-        type: DataType.BOOLEAN
+        type: DataType.BOOLEAN,
+        defaultValue: true
     })
     estatus: boolean;
 
     @ForeignKey(() => PersonaEntity)
     @Column({
-        type: DataType.INTEGER
+        type: DataType.INTEGER,
+        allowNull: false
     })
     id_persona: number;
 
