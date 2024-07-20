@@ -8,6 +8,7 @@ import { Model, Sequelize } from 'sequelize';
 import { isEmpty } from 'class-validator';
 import { UpdatePersonaDto } from 'src/persona/dto/update-persona.dto';
 import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
+import { NOTFOUND } from 'dns';
 
 @Injectable()
 export class EmpleadoService {
@@ -102,7 +103,7 @@ export class EmpleadoService {
         try{
             const employee = await this.empleadoModel.findOne({where: {id_empleado: id}});
             if(!employee){
-                throw new HttpException('Empleado no encontrado', 404);
+                throw new HttpException('Empleado no encontrado', 400);
             
             }
             const person = await this.personaModel.findOne({where: {id_persona: employee.id_persona}});
@@ -110,6 +111,7 @@ export class EmpleadoService {
             const personUpdated = await person.update(persona);
 
             return {persona: personUpdated, empleado: employeeUpdated};
+
         }catch(error){
             throw error;
         }

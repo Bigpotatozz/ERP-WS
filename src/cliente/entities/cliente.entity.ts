@@ -23,21 +23,12 @@ export class ClienteEntity extends Model{
     nombre_empresa: string;
     @Column({
         type: DataType.STRING
-    
-    })
-    correo: string;
-    @Column({
-        type: DataType.STRING
     })
     telefono: string;
     @Column({
-        type: DataType.STRING
-    })
-    calle: string;
-    @Column({
-        type: DataType.BOOLEAN,
+        type: DataType.STRING,
         defaultValue: true
-    })
+    })  
     estatus: boolean;
 
     @ForeignKey(() => PersonaEntity)

@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 
 export class CreateCliente {
@@ -7,11 +7,8 @@ export class CreateCliente {
     @IsString()
     nombre_empresa: string;
     @IsString()
-    correo: string;
-    @IsString()
     telefono: string;
-    @IsString()
-    calle: string;
-
+    @IsNumber()
+    id_persona: number;
 
 }

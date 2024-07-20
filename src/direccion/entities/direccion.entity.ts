@@ -56,7 +56,8 @@ export class DireccionEntity extends Model{
     longitud: string;
     @ForeignKey(() => ClienteEntity)
     @Column({
-        type: DataType.INTEGER
+        type: DataType.INTEGER,
+        allowNull: false
     })
     id_cliente: number;
     
